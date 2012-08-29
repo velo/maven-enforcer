@@ -132,9 +132,9 @@
   </modules>
 
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/enforcer/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/enforcer/trunk/</developerConnection>
-    <url>http://svn.apache.org/viewcvs.cgi/maven/enforcer/trunk</url>
+    <connection>scm:git:git://github.com/velo/maven-enforcer.git</connection>
+    <developerConnection>scm:git:https://github.com/velo/maven-enforcer.git</developerConnection>
+    <url>https://github.com/velo/maven-enforcer</url>
   </scm>
   <issueManagement>
     <system>jira</system>
@@ -145,10 +145,10 @@
     <url>https://builds.apache.org/hudson/job/maven-enforcer/</url>
   </ciManagement>
   <distributionManagement>
-    <site>
-      <id>apache.website</id>
-      <url>scp://people.apache.org/www/maven.apache.org/enforcer/</url>
-    </site>
+    <repository>
+      <id>nexus</id>
+      <url>http://192.168.15.37:8081/nexus/content/repositories/thirdparty/</url>
+    </repository>
   </distributionManagement>
   <properties>
     <maven.version>2.0.9</maven.version>
@@ -259,7 +259,14 @@
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
           <configuration>
-            <tagBase>https://svn.apache.org/repos/asf/maven/enforcer/tags</tagBase>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
           </configuration>
         </plugin>
       </plugins>
